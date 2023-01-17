@@ -1,5 +1,5 @@
 import { useState ,useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import InstructorDetails from "../components/InstructorDetails";
 const Instructor=({TraineeID})=>{
     let {instructorID}=useParams()
@@ -30,7 +30,9 @@ const Instructor=({TraineeID})=>{
         
                 }
             </div>
-
+            <Link to ={'/reportList'}>
+            <button style={{ width: "100px", height: "60px", margin:25 }} type="submit">Reports</button>
+        </Link>
         </div>
 
         

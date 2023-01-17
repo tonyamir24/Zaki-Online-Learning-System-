@@ -31,7 +31,7 @@ const InstViewCourses =()=>{
             
         fetchUser()
         
-    },[])
+    },[InstructorID])
     return (
         <div className="seachResults">
             

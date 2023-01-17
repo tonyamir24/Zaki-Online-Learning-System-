@@ -1,4 +1,4 @@
-import { useEffect,  useState } from 'react'
+import {   useState } from 'react'
 
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
@@ -92,6 +92,7 @@ const ForgetPassword =() =>{
        
         <input type="submit" value="Send" />
         </form>
+        {error && <div className="error">{error}</div>} 
 
         </div>
         

@@ -15,7 +15,7 @@ var Exercises =[]
     const handleSubmit=async(e) => {
         e.preventDefault()
         const Question ={QuestionHead, Answer1 , Answer2 , Answer3 , Answer4 , TrueAnswer}
-        Exercises.push(Question)
+        Exercises.push({Question}) 
 
 
 
@@ -144,6 +144,7 @@ var Exercises =[]
         <button> Add Question </button>
         </form> 
         <input type="submit" value="Add Exam" onClick={handleS}/>
+        {error && <div className="error"><p>{error}</p></div>}
 
 </dev>
 

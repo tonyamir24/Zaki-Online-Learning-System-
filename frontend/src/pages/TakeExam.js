@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import QuestionDetails from "../components/QuestionDetails"
+import QuestionForm from "./QuestionForm"
+//import QuestionDetails from "../components/QuestionDetails"
 
 
 const TakeExam=()=>{
     const {id}=useParams()
-    const [exercises,setQuestions]=useState(null)
+    const [Exercises,setQuestions]=useState(null)
     useEffect(() => {
         const fetchQuestions = async ()=> {
             const response= await fetch('/readQuestion/'+id)
@@ -26,12 +27,22 @@ const TakeExam=()=>{
     return (
         <div className="home">
             <div className="Questions" >
-                <div className = 'question-card' >
-                {exercises &&
-                    console.log(exercises)
+                
+                {Exercises &&  Exercises.map(({Question})=>{
+                return(
+                   
+                    <QuestionForm key={Question._id} course={Question}/>
+                    
+        
+                )
+                 
+            }
+                
+                )
+                    
                 }
                 
-            </div>
+            
             
              </div> 
                   

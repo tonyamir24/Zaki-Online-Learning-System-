@@ -14,7 +14,14 @@ const port = process.env.PORT || "8000";
 
 // #Importing the userController
 const courseRoutes = require('./Routes/courseRoutes')
-const UserRoutes = require('./Routes/UserRoute')
+const UserConRoutes = require('./Routes/UserRoute')
+const userRoutes=require('./Routes/users')
+const reportRoutes=require('./Routes/reportRoutes')
+const traineeRoutes=require('./Routes/traineeRoutes')
+const requestRoutes=require('./Routes/requestRoutes')
+const progressRoutes=require('./Routes/progressRoutes')
+const instructorRoutes=require('./Routes/instructorRoutes')
+
 //const Route = require('./Routes/userController')
 
 // configurations
@@ -40,8 +47,13 @@ app.get("/home", (req, res) => {
 
 
 app.use(courseRoutes)
-app.use(UserRoutes)
-
+app.use(UserConRoutes)
+app.use(userRoutes)
+app.use(reportRoutes)
+app.use(traineeRoutes)
+app.use(requestRoutes)
+app.use(progressRoutes)
+app.use(instructorRoutes)
 
 /*
                                                     End of your code

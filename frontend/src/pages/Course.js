@@ -1,9 +1,9 @@
 import { useState ,useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import {  Link, useParams } from "react-router-dom";
 import CourseDetails from "../components/CourseDetails";
 const Course=()=>{
     let {courseID}=useParams()
-    const [Courses,setCourses]=useState(null)
+    const [course,setCourse]=useState(null)
 
     useEffect(()=>{
         const fetchUser= async() =>{
@@ -11,7 +11,8 @@ const Course=()=>{
             const json = await response.json()
 
             if(response.ok){
-                setCourses(json)
+                
+                setCourse(json)
                 console.log(json)
                 }
             }
@@ -23,17 +24,21 @@ const Course=()=>{
         <div className="seachResults">
             <h1>Results</h1>
             <div className="read">
-            {Courses && Courses.map((course)=>{
-                return(
+            
                    
+                   {course &&
                     <CourseDetails key={course._id} course={course}/>
                     
         
-                )
-                 
-            })
-    
-            }
+                   
+    }
+    {course &&
+
+         <Link to ={'/reportForm/'+course._id}>
+                         <button style={{ width: "100px", height: "60px", margin:25 }} type="submit">Report Course</button>
+                     </Link>
+    }
+            
             </div>
         </div>
 

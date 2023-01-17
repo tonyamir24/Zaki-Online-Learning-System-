@@ -33,13 +33,13 @@ const courseSchema = new Schema({
 
   },
   Subtitles: {
-   type: [{Subtitle:String,Hours:Number,Video:String,VideoDes:String}],
+   type: [{Subtitle:{SubtitleName:String,SubtitleHours:Number,SubtitleVideo:String,SubtitleVideoDes:String}}],
   },
   Subject :{
     type: String
   },
-  Exercises :{
-    type: [{QuestionHead:String,Answer1:String,Answer2:String,Answer3:String,Answer4:String,TrueAnswer:String}]
+  Exercises :{ 
+    type: [{Question:{QuestionHead:String,Answer1:String,Answer2:String,Answer3:String,Answer4:String,TrueAnswer:String}}]
   },
   Video :{
     type: String

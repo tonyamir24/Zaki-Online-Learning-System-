@@ -14,8 +14,8 @@ const SearchResults =()=>{
                 //dispatch({type:'SET_RESULTS',payload:json})
                 seterror(null)
                 setCourses(json)
-                seachQuery(null)
-                
+                setseachQuery(null)
+                console.log(json)
                 }
 
             if(!response.ok){
@@ -29,17 +29,17 @@ const SearchResults =()=>{
                 }
             
             }
-            
+            if(seachQuery)
         fetchUser()
         
     },[seachQuery])
     return (
         <div className="seachResults">
             
-            <div class="col-lg-6">
-            <div class="input-group">
+            <div className="col-lg-6">
+            <div className="input-group">
                 <input type="text" 
-                class="form-control" 
+                className="form-control" 
                 placeholder="Search for..." 
                 onChange={(e)=>{
                     setseachQuery(e.target.value)

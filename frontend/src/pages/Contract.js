@@ -1,9 +1,9 @@
-import {useEffect , useState} from "react"
+//import {useEffect , useState} from "react"
 import  { Link } from 'react-router-dom'
 
 
 const Contract = () => {
-var x =  "I agree to terms & Conditions"
+//var x =  "I agree to terms & Conditions"
 
         return (
             <form className="create">

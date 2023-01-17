@@ -252,7 +252,7 @@ const AddRating =async(req,res)=>{
 const viewCourseID = async(req,res)=>{
     const {id}=req.params
      try{
-         const title =await Course.find({_id:id})
+         const title =await Course.findOne({_id:id})
          if(title)
          res.status(200).json(title)
          else{
