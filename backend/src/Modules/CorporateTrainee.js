@@ -17,7 +17,7 @@ const CorporateTraineeSchema = new Schema({
     type: String
   },
   Courses:{
-    type:[{courseID:String,courseTitle:String,Progress:Number}]
+    type:[{courseID:String,courseTitle:String,Progress:[{SubtitleID:String,}]}]
   }
 }, { timestamps: true });
 

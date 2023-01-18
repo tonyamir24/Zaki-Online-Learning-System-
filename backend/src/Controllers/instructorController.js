@@ -9,79 +9,43 @@ const jwt = require('jsonwebtoken')
 const moneyOwed =async (req,res)=>{
     const {InstructorID}=req.body
     var totalMoney=0
-    const count=0
     try{
-       // const  instructor =await Instructor.find()
-        //if(instructor)
-        const courses=await Course.find({InstructorID})
-       // var  indTrainee =await IndividualTrainee.find({ "names": { "$in": list } })
-       // var coTrainee =await CorporateTrainee.find({ "names": { "$in": list } })
-       // console.log(courses)
 
        const indTrainee =await IndividualTrainee.find()
        const coTrainee =await CorporateTrainee.find()
        
+       const {_id} = jwt.verify(InstructorID, process.env.SECRET)
 
 
-          for(var i = 0; i < courses.length; i++)
-        {
+          
             for(var j = 0; j < indTrainee.length; j++){
-                for(var x = 0; x < indTrainee[j].Courses; x++){
-                                 console.log(indTrainee[j].Courses[x].courseID)
-                                 console.log(courses[i]._id)
-                             if(indTrainee[j].Courses[x].courseID===courses[i]._id){
-                                 count++;
+               if(indTrainee[j].Courses){
+                for(var x = 0; x < indTrainee[j].Courses.length; x++){
+                   
+                  const course = await Course.findOne({_id:indTrainee[j].Courses[x].courseID,InstructorID:_id})
+                             if(course){
+                                totalMoney+=course.Price
                              }
             }
 
+        }
+        }
+    
 
+        for(var i = 0; i < coTrainee.length; i++){
+            console.log(coTrainee[i])
+               if(coTrainee[i].Courses){
+            for(var y = 0; y < coTrainee[i].Courses.length; y++){
+               
+              const course = await Course.findOne({_id:coTrainee[i].Courses[y].courseID,InstructorID:_id})
+                         if(course){
+                            totalMoney+=course.Price
+                        }
         }
     }
 
-
-        //  {
-        //    // console.log(courses[i].Title)
-            
-        //     const indTrainee =await IndividualTrainee.find()
-        //        console.log(indTrainee)
-        //     for(var j = 0; j < indTrainee.length; j++){
-        //         console.log(indTrainee[j].length)
-        //         for(var x = 0; x < indTrainee[j].Courses; x++){
-        //             console.log(indTrainee[j].Courses[x].courseID)
-        //             console.log(courses[i]._id)
-        //         if(indTrainee[j].Courses[x].courseID===courses[i]._id){
-        //             count++;
-        //         }
-        //         }
-        //          }
-
-                // console.log(count)
-            // for(var k = 0; k < coTrainee.length; k++){
-                
-            // }
-
-
-        //     for(var i = 0; i < coTrainee.length; i++){
-
-        //         if(coTrainee[i].courseID == courseId)
-        //          {
-                   
-
-                     
-        //          }
-
-        //     }
-        //     for(var i = 0; i < indTrainee.length; i++){
-
-        //         if(indTrainee.Courses[i].courseID == courseId)
-        //          {
-                   
-
-                     
-        //          }
-
-        //     }
-        //  }
+    }
+        return res.status(200).json(totalMoney)
     }
     catch(error){
         res.status(400).json({error:error.message})
